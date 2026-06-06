@@ -1,0 +1,170 @@
+/* ─────────────────────────────────────────────────────────────
+   @isc-hei/design — neutral tokens & utilities
+   Consumers add their own petal/accent colours on top.
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Typography */
+  --isc-font-sans: 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+  --isc-font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --isc-font-mono: 'Fira Code', ui-monospace, monospace;
+
+  /* Layout */
+  --isc-page-padding-x: 28px;
+  --isc-max-width: 1080px;
+
+  /* Neutrals — light theme */
+  --isc-text-primary:   #0a1a2f;
+  --isc-text-secondary: #555;
+  --isc-text-muted:     #888;
+  --isc-text-disabled:  #bbb;
+
+  --isc-bg-page:      #fcfbf8;
+  --isc-bg-white:     #ffffff;
+  --isc-bg-secondary: #fbfaf7;
+  --isc-bg-meta:      #f5f3ec;
+
+  --isc-border-default: #ecebe5;
+  --isc-border-strong:  #e5e3da;
+
+  --isc-glass: rgba(255, 255, 255, 0.72);
+  --isc-hei:   #dc0069;
+}
+
+/* ─────────────── Dark mode ─────────────── */
+:root[data-theme="dark"] {
+  --isc-text-primary:   #f3f4f6;
+  --isc-text-secondary: #a8acb3;
+  --isc-text-muted:     #6a6e75;
+  --isc-text-disabled:  #3a3a40;
+
+  --isc-bg-page:      #0e0e10;
+  --isc-bg-white:     #16161a;
+  --isc-bg-secondary: #1a1a1d;
+  --isc-bg-meta:      #0e0e10;
+
+  --isc-border-default: #2a2a2e;
+  --isc-border-strong:  #3a3a40;
+
+  --isc-glass: rgba(22, 22, 26, 0.72);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --isc-text-primary:   #f3f4f6;
+    --isc-text-secondary: #a8acb3;
+    --isc-text-muted:     #6a6e75;
+    --isc-text-disabled:  #3a3a40;
+
+    --isc-bg-page:      #0e0e10;
+    --isc-bg-white:     #16161a;
+    --isc-bg-secondary: #1a1a1d;
+    --isc-bg-meta:      #0e0e10;
+
+    --isc-border-default: #2a2a2e;
+    --isc-border-strong:  #3a3a40;
+
+    --isc-glass: rgba(22, 22, 26, 0.72);
+  }
+}
+
+/* ─── Mono uppercase label ──────────────────────────────────────
+   Small mono uppercase kicker/surtitle text. The --isc-mono-nudge
+   var compensates for uppercase mono's missing descender making it
+   look too high next to sans content. */
+.isc-mono-label {
+  font-family: var(--isc-font-mono);
+  text-transform: uppercase;
+  margin-top: var(--isc-mono-nudge, 2px);
+}
+
+/* ─────────────── Reset ─────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--isc-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--isc-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a      { color: inherit; }
+button { font-family: inherit; }
+
+/* ─────────────── Page shell ─────────────── */
+.isc-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.isc-page__frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--isc-bg-white);
+  border-left:  0.5px solid var(--isc-border-default);
+  border-right: 0.5px solid var(--isc-border-default);
+  max-width: var(--isc-max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.isc-page__frame > .isc-footer { margin-top: auto; }
+
+/* ─────────────── FAB ─────────────── */
+.isc-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--isc-glass);
+  border: 1px solid var(--isc-border-default);
+  color: var(--isc-text-primary);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.isc-fab:hover  { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.14); border-color: var(--isc-border-strong); }
+.isc-fab:active { transform: scale(0.95); }
+
+/* ─────────────── Tooltips ─────────────── */
+[data-tooltip] { position: relative; }
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(40,48,64,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #f0f1f3;
+  padding: 6px 12px;
+  font-size: 0.833rem;
+  font-family: var(--isc-font-sans);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  white-space: nowrap;
+  z-index: 300;
+  pointer-events: none;
+  animation: isc-tooltip-in 0.18s ease 0.35s both;
+}
+
+[data-tooltip][data-tooltip-pos="top"]:hover::after {
+  top: auto;
+  bottom: calc(100% + 6px);
+  animation: isc-tooltip-in-up 0.18s ease 0.35s both;
+}
+
+@keyframes isc-tooltip-in    { from { opacity:0; transform:translate(-50%,-4px); } to { opacity:1; transform:translate(-50%,0); } }
+@keyframes isc-tooltip-in-up { from { opacity:0; transform:translate(-50%, 4px); } to { opacity:1; transform:translate(-50%,0); } }
