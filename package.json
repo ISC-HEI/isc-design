@@ -1,6 +1,6 @@
 {
   "name": "@isc-hei/design",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "ISC design system — Vue 3 components, tokens, and utilities",
   "exports": {
@@ -8,7 +8,13 @@
     "./style.css": "./style.css"
   },
   "peerDependencies": {
-    "vue": "^3.5.0"
+    "vue": "^3.5.0",
+    "canvas-confetti": "^1.9.0"
+  },
+  "peerDependenciesMeta": {
+    "canvas-confetti": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
