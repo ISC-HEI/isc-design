@@ -33,7 +33,7 @@ function onHashClick() {
     <a :href="href" target="_blank" rel="noopener noreferrer" class="isc-footer__repo">{{ repoUrl }}</a>
 
     <span class="isc-footer__credit">
-      Made with <span class="isc-footer__heart" aria-hidden="true">♥</span> — mui {{ year }}
+      Made with <span class="isc-footer__heart" aria-hidden="true">❤️</span> — mui {{ year }}
     </span>
 
     <button
