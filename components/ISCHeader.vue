@@ -154,6 +154,10 @@ defineProps({
   .isc-header__divider {
     display: none;
   }
+  .isc-header__brand {
+    flex: 0 0 100%;
+    justify-content: center;
+  }
   .isc-header__title {
     font-size: 1.056rem;
   }

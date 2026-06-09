@@ -133,6 +133,18 @@ function onHeartClick() {
   .isc-footer {
     padding: 12px 16px;
     font-size: 0.611rem;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "contact logo"
+      "credit  credit";
+    gap: 8px 16px;
+    align-items: center;
+  }
+  .isc-footer__credit {
+    justify-self: center;
+  }
+  .isc-footer__hei-logo {
+    height: 48px;
   }
 }
 </style>
