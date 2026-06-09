@@ -5,8 +5,8 @@
 
 :root {
   /* Typography */
-  --isc-font-sans: 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
-  --isc-font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --isc-font-sans: 'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --isc-font-heading: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   --isc-font-mono: 'Fira Code', ui-monospace, monospace;
 
   /* Layout */
@@ -24,7 +24,7 @@
   --isc-bg-secondary: #fbfaf7;
   --isc-bg-meta:      #f5f3ec;
 
-  --isc-border-default: #ecebe5;
+  --isc-border-default: #d1cfc6;
   --isc-border-strong:  #e5e3da;
 
   --isc-glass: rgba(255, 255, 255, 0.72);

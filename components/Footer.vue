@@ -19,17 +19,20 @@ function onHeartClick() {
 
 <template>
   <footer class="isc-footer">
-    <slot name="logo" />
+    <button
+      type="button"
+      class="isc-footer__contact"
+      @click="emit('contact-click')"
+    >
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Nous parler
+    </button>
 
     <span class="isc-footer__credit">
       Made with <span class="isc-footer__heart" aria-hidden="true" @click="onHeartClick">❤️</span> — mui {{ year }}
     </span>
 
-    <button
-      type="button"
-      class="isc-footer__contact"
-      @click="emit('contact-click')"
-    ><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.12em;margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Nous parler</button>
+    <slot name="logo" />
   </footer>
 </template>
 
@@ -39,16 +42,13 @@ function onHeartClick() {
   background: var(--isc-bg-secondary);
   padding: 12px var(--isc-page-padding-x);
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "contact logo"
-    "credit  logo";
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "contact credit logo";
   align-items: center;
   font-family: var(--isc-font-mono);
   font-size: 0.61rem;
   color: var(--isc-text-muted);
-  gap: 0 8px;
+  gap: 0 16px;
   user-select: none;
   letter-spacing: 0.02em;
 }
@@ -85,8 +85,10 @@ function onHeartClick() {
 .isc-footer__credit {
   grid-area: credit;
   color: var(--isc-text-muted);
-  text-align: left;
-  padding-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .isc-footer__heart {
@@ -94,7 +96,7 @@ function onHeartClick() {
   color: var(--isc-hei);
   font-size: 0.556rem;
   vertical-align: 0.15em;
-  margin: 0 1px;
+  margin: 0 4px;
   cursor: pointer;
   animation: isc-heart-pulse 1.2s ease-in-out infinite;
 }
@@ -108,11 +110,12 @@ function onHeartClick() {
   grid-area: contact;
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   background: var(--isc-bg-white);
   border: 1px solid var(--isc-border-default);
   border-radius: 999px;
   height: 32px;
-  padding: 0 12px 0 10px;
+  padding: 0 14px;
   font-family: var(--isc-font-sans);
   font-size: 0.72rem;
   font-weight: 500;
@@ -120,8 +123,6 @@ function onHeartClick() {
   color: var(--isc-text-secondary);
   cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease;
-  justify-self: start;
-  align-self: end;
 }
 .isc-footer__contact:hover {
   color: var(--isc-text-primary);
@@ -132,7 +133,6 @@ function onHeartClick() {
   .isc-footer {
     padding: 12px 16px;
     font-size: 0.611rem;
-    grid-template-columns: 1fr auto;
   }
 }
 </style>
