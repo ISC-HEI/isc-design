@@ -62,6 +62,7 @@ defineProps({
 .isc-header__bar {
   width: 8px;
   flex-shrink: 0;
+  transition: background-color 0.35s ease;
 }
 
 .isc-header__inner {
@@ -115,6 +116,7 @@ defineProps({
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.35s ease;
 }
 .isc-header__surtitle a {
   color: inherit;
@@ -130,6 +132,7 @@ defineProps({
   letter-spacing: -0.4px;
   line-height: 1.15;
   margin: 0;
+  transition: color 0.35s ease;
 }
 
 .isc-header__meta {
