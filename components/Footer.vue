@@ -1,4 +1,14 @@
 <script setup>
+/**
+ * showContact — the "Nous contacter" button is OPT-IN: it only emits
+ * `contact-click`, so a consumer that doesn't listen would get a dead
+ * button (this happened to isc-tbs on 0.2.1). Pass :show-contact="true"
+ * together with an @contact-click handler.
+ */
+defineProps({
+  showContact: { type: Boolean, default: false },
+})
+
 const emit = defineEmits(['secret-click', 'contact-click'])
 
 const year = new Date().getFullYear()
@@ -20,6 +30,7 @@ function onHeartClick() {
 <template>
   <footer class="isc-footer">
     <button
+      v-if="showContact"
       type="button"
       class="isc-footer__contact"
       @click="emit('contact-click')"
