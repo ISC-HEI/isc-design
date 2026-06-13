@@ -110,12 +110,22 @@ function onHeartClick() {
   vertical-align: 0.15em;
   margin: 0 4px;
   cursor: pointer;
+  /* Promote to its own compositor layer so the pulse is GPU-composited.
+     Without this, mobile browsers re-rasterize the colour-emoji glyph on
+     every frame as it scales, which reads as janky. */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   animation: isc-heart-pulse 1.2s ease-in-out infinite;
 }
 
 @keyframes isc-heart-pulse {
   0%, 100% { transform: scale(1); }
   50%       { transform: scale(1.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isc-footer__heart { animation: none; }
 }
 
 .isc-footer__contact {
