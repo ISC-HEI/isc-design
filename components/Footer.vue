@@ -40,7 +40,7 @@ function onHeartClick() {
     </button>
 
     <span class="isc-footer__credit">
-      Made with <span class="isc-footer__heart" aria-hidden="true" @click="onHeartClick">❤️</span> — mui {{ year }}
+      Made with <span class="isc-footer__heart" aria-hidden="true" @click="onHeartClick"><svg class="isc-footer__heart-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.07C.9 10.27 1.4 6.6 4.2 5.07c2.06-1.12 4.5-.45 5.92 1.2L12 8.05l1.88-1.78c1.42-1.65 3.86-2.32 5.92-1.2 2.8 1.53 3.3 5.2 1.53 7.86C18.7 16.65 12 21 12 21z"/></svg></span> — mui {{ year }}
     </span>
 
     <slot name="logo" />
@@ -104,28 +104,36 @@ function onHeartClick() {
 }
 
 .isc-footer__heart {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: var(--isc-hei);
-  font-size: 0.5rem;
-  vertical-align: 0.15em;
+  vertical-align: -0.15em;
   margin: 0 4px;
   cursor: pointer;
-  /* Promote to its own compositor layer so the pulse is GPU-composited.
-     Without this, mobile browsers re-rasterize the colour-emoji glyph on
-     every frame as it scales, which reads as janky. */
+}
+
+/* Inline SVG instead of the ❤️ emoji: a colour emoji is a bitmap on mobile,
+   so the pulse either re-rasterizes the glyph each frame (janky) or, once
+   promoted to a compositor layer, GPU-upscales a low-res snapshot (jagged).
+   A vector heart sidesteps both. The icon box is sized to the pulse's PEAK
+   and the keyframes only ever scale DOWN from it, so the composited texture
+   is never upscaled — it stays crisp while remaining GPU-smooth. */
+.isc-footer__heart-icon {
+  width: 0.78rem;
+  height: 0.78rem;
+  transform-origin: center;
   will-change: transform;
-  transform: translateZ(0);
   backface-visibility: hidden;
   animation: isc-heart-pulse 1.2s ease-in-out infinite;
 }
 
 @keyframes isc-heart-pulse {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.3); }
+  0%, 100% { transform: scale(0.77); }
+  50%       { transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .isc-footer__heart { animation: none; }
+  .isc-footer__heart-icon { animation: none; transform: scale(0.85); }
 }
 
 .isc-footer__contact {
