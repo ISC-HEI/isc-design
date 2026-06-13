@@ -103,6 +103,13 @@ function onHeartClick() {
   text-align: center;
 }
 
+/* The pulse animates the HTML <span>, not the inner <svg>: a transform on an
+   SVG root often misses the compositor fast path on mobile (notably Firefox),
+   so it would run on the main thread and drop frames. Animating the wrapper
+   keeps the whole thing on the GPU compositor — smooth even under main-thread
+   load. The static SVG inside is rendered once at the pulse's PEAK size
+   (0.78rem) and the keyframes only ever scale DOWN from it, so the composited
+   texture is never upscaled and the heart stays crisp at every size. */
 .isc-footer__heart {
   display: inline-flex;
   align-items: center;
@@ -110,21 +117,16 @@ function onHeartClick() {
   vertical-align: -0.15em;
   margin: 0 4px;
   cursor: pointer;
-}
-
-/* Inline SVG instead of the ❤️ emoji: a colour emoji is a bitmap on mobile,
-   so the pulse either re-rasterizes the glyph each frame (janky) or, once
-   promoted to a compositor layer, GPU-upscales a low-res snapshot (jagged).
-   A vector heart sidesteps both. The icon box is sized to the pulse's PEAK
-   and the keyframes only ever scale DOWN from it, so the composited texture
-   is never upscaled — it stays crisp while remaining GPU-smooth. */
-.isc-footer__heart-icon {
-  width: 0.78rem;
-  height: 0.78rem;
   transform-origin: center;
   will-change: transform;
   backface-visibility: hidden;
   animation: isc-heart-pulse 1.2s ease-in-out infinite;
+}
+
+.isc-footer__heart-icon {
+  display: block;
+  width: 0.78rem;
+  height: 0.78rem;
 }
 
 @keyframes isc-heart-pulse {
@@ -133,7 +135,7 @@ function onHeartClick() {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .isc-footer__heart-icon { animation: none; transform: scale(0.85); }
+  .isc-footer__heart { animation: none; transform: scale(0.85); }
 }
 
 .isc-footer__contact {
