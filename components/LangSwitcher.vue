@@ -52,7 +52,7 @@ const emit = defineEmits(['update:modelValue'])
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--isc-text-disabled);
+  color: var(--isc-text-secondary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;

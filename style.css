@@ -35,7 +35,7 @@
 :root[data-theme="dark"] {
   --isc-text-primary:   #f3f4f6;
   --isc-text-secondary: #a8acb3;
-  --isc-text-muted:     #6a6e75;
+  --isc-text-muted:     #8e949e;
   --isc-text-disabled:  #3a3a40;
 
   --isc-bg-page:      #0e0e10;
@@ -53,7 +53,7 @@
   :root:not([data-theme="light"]) {
     --isc-text-primary:   #f3f4f6;
     --isc-text-secondary: #a8acb3;
-    --isc-text-muted:     #6a6e75;
+    --isc-text-muted:     #8e949e;
     --isc-text-disabled:  #3a3a40;
 
     --isc-bg-page:      #0e0e10;
