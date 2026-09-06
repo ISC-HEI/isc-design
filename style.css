@@ -31,40 +31,43 @@
   --isc-hei:   #dc0069;
 }
 
-/* ─────────────── Dark mode ─────────────── */
+/* ─────────────── Dark mode — "Ardoise" ───────────────
+   Slate rather than near-black: page / card / border each sit one clear step
+   apart so quiet surfaces (plain cards, grids, dashed boxes) stay visible.
+   Adopted fleet-wide from isc-calendar, Sept 2026. */
 :root[data-theme="dark"] {
   --isc-text-primary:   #f3f4f6;
-  --isc-text-secondary: #a8acb3;
-  --isc-text-muted:     #8e949e;
-  --isc-text-disabled:  #3a3a40;
+  --isc-text-secondary: #d0d3da;
+  --isc-text-muted:     #9a9ea9;
+  --isc-text-disabled:  #646977;
 
-  --isc-bg-page:      #0e0e10;
-  --isc-bg-white:     #16161a;
-  --isc-bg-secondary: #1a1a1d;
-  --isc-bg-meta:      #0e0e10;
+  --isc-bg-page:      #24262e;
+  --isc-bg-white:     #31343e;
+  --isc-bg-secondary: #363a45;
+  --isc-bg-meta:      #24262e;
 
-  --isc-border-default: #2a2a2e;
-  --isc-border-strong:  #3a3a40;
+  --isc-border-default: #4a4e5b;
+  --isc-border-strong:  #5b6070;
 
-  --isc-glass: rgba(22, 22, 26, 0.72);
+  --isc-glass: rgba(49, 52, 62, 0.8);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --isc-text-primary:   #f3f4f6;
-    --isc-text-secondary: #a8acb3;
-    --isc-text-muted:     #8e949e;
-    --isc-text-disabled:  #3a3a40;
+    --isc-text-secondary: #d0d3da;
+    --isc-text-muted:     #9a9ea9;
+    --isc-text-disabled:  #646977;
 
-    --isc-bg-page:      #0e0e10;
-    --isc-bg-white:     #16161a;
-    --isc-bg-secondary: #1a1a1d;
-    --isc-bg-meta:      #0e0e10;
+    --isc-bg-page:      #24262e;
+    --isc-bg-white:     #31343e;
+    --isc-bg-secondary: #363a45;
+    --isc-bg-meta:      #24262e;
 
-    --isc-border-default: #2a2a2e;
-    --isc-border-strong:  #3a3a40;
+    --isc-border-default: #4a4e5b;
+    --isc-border-strong:  #5b6070;
 
-    --isc-glass: rgba(22, 22, 26, 0.72);
+    --isc-glass: rgba(49, 52, 62, 0.8);
   }
 }
 
