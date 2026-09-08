@@ -1,0 +1,17 @@
+{
+  "name": "isc-design-smoke",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@isc-hei/design": "file:../..",
+    "canvas-confetti": "^1.9.4",
+    "vue": "^3.5.41"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.8",
+    "vite": "^8.2.2"
+  }
+}
