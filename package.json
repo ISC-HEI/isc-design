@@ -3,6 +3,11 @@
   "version": "0.3.1",
   "type": "module",
   "description": "ISC design system — Vue 3 components, tokens, and utilities",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ISC-HEI/isc-design.git"
+  },
+  "license": "SEE LICENSE IN README.md",
   "exports": {
     ".": "./index.js",
     "./style.css": "./style.css"
@@ -15,8 +20,5 @@
     "canvas-confetti": {
       "optional": true
     }
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
