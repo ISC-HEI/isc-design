@@ -139,6 +139,24 @@ button { font-family: inherit; }
 .isc-fab:hover  { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.14); border-color: var(--isc-border-strong); }
 .isc-fab:active { transform: scale(0.95); }
 
+/* Mobile: a `backdrop-filter` on a position:fixed control (the accessibility
+   FAB) makes the compositor re-read and re-blur the page behind it on every
+   scroll frame — one of the few costs that scales with scrolling rather than
+   with the element's size. Phones pay it the whole way down the page, so the
+   glass effect is dropped there in favour of an opaque surface.
+
+   The rule covers every .isc-fab, not just the fixed one, on purpose: a FAB
+   sitting inline on a flat surface has nothing with contrast behind it, so
+   its backdrop-filter renders nothing visible and only the cost is lost. */
+@media (max-width: 1080px) {
+  .isc-fab {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--isc-bg-white);
+  }
+}
+
+
 /* ─────────────── Tooltips ─────────────── */
 [data-tooltip] { position: relative; }
 
