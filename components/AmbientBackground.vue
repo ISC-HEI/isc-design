@@ -70,6 +70,23 @@ const active = computed(() =>
 @keyframes isc-blob-4 { 0%{transform:translate( -5vw, 25vh)} 50%{transform:translate(45vw,-10vh)} 100%{transform:translate(65vw,55vh)} }
 @keyframes isc-blob-5 { 0%{transform:translate( 35vw, 45vh)} 50%{transform:translate(-5vw,15vh)} 100%{transform:translate(25vw,-5vh)} }
 
+/* Phones and small tablets: same five colour washes, none of the cost.
+   A `blur(80px)` on a solid disc is the expensive part — it inflates each
+   layer's bounds by ~240px per side and makes the compositor rasterize a
+   filter pass per layer, five times, at the device's pixel ratio. A radial
+   gradient fading to transparent gives the same soft blob with no filter at
+   all, so the boxes are grown to cover the spread the blur used to add.
+   The motion stays: these keyframes only translate, which is cheap on a
+   layer that carries no filter. */
+@media (max-width: 900px) {
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob { filter: none; }
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob:nth-child(1) { width: 64vmax; height: 64vmax; background: radial-gradient(circle, var(--a1) 0%, transparent 62%); }
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob:nth-child(2) { width: 56vmax; height: 56vmax; background: radial-gradient(circle, var(--a2) 0%, transparent 62%); }
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob:nth-child(3) { width: 48vmax; height: 48vmax; background: radial-gradient(circle, var(--a3) 0%, transparent 62%); }
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob:nth-child(4) { width: 61vmax; height: 61vmax; background: radial-gradient(circle, var(--a4) 0%, transparent 62%); }
+  .isc-ambient[data-bg="blobs"] .isc-ambient__blob:nth-child(5) { width: 51vmax; height: 51vmax; background: radial-gradient(circle, var(--a5) 0%, transparent 62%); }
+}
+
 /* ── gradient ─────────────────────────────────────────────── */
 .isc-ambient[data-bg="gradient"] {
   background: linear-gradient(135deg, var(--a1), var(--a2), var(--a3), var(--a4), var(--a5), var(--a1));
